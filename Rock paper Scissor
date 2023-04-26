@@ -1,0 +1,29 @@
+from random import sample
+
+def game():
+    options=["rock", "Paper", "Scissors"]
+    score=0
+    
+    while(True):
+        print("Press 1 for rock")
+        print("Press 2 for paper")
+        print("Press 3 for scissors")
+        choice=input("Enter your choice:--")
+        comp=sample(options,1)
+        match choice:
+            case 1:
+                if(comp=="rock"):
+                    print("Fail!")
+            case 2:
+                if(comp=='paper'):
+                    print("Fail!")
+            case 3:
+                if(comp=="scissor"):
+                    print("Fail!")
+            case _:
+                score+=1
+                print("Different choices")
+                print ("Total Score=", score, "\n")
+    
+
+game()
