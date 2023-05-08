@@ -8,11 +8,26 @@ def printBoard(xState, yState):
     six='X' if xState[6] else ('O' if yState[6] else 6)
     seven='X' if xState[7] else ('O' if yState[7] else 7)
     eight='X' if xState[8] else ('O' if yState[8] else 8)
-    print(f"{zero} | {one} | {two}")
+    print(f"{zero}  | {one} | {two}")
     print(f"---|---|---")
-    print(f"{three} | {four} | {five}")
+    print(f"{three}  | {four} | {five}")
     print(f"---|---|---")
-    print(f"{six} | {seven} | {eight}")
+    print(f"{six}  | {seven} | {eight}")
+    
+def sum(a,b,c):
+    return a+b+c
+
+#For the for-loop we add the values in each element of wins to check if it adds up to 3 
+def checkWin(xState, yState):
+    wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8], [0,4,8], [2,4,6]]
+    for win in wins:
+        if (sum(xState[win[0]],xState[win[1]],xState[win[2]])==3):
+            print("X wins the match")
+            return 1
+        if (sum(yState[win[0]],yState[win[1]],yState[win[2]])==3):
+            print("Y wins the match")
+            return 0
+        return -1
     
     
 if __name__=="__main__":
@@ -25,11 +40,15 @@ if __name__=="__main__":
         printBoard(xState, yState)
         if(turn==1):
             print("X's Chance")
-            value= int(input("Please enter a value"))
+            value= int(input("Please enter a value--"))
             xState[value]=1
         else:
-            print("X's Chance")
-            value= int(input("Please enter a value"))
+            print("O's Chance")
+            value= int(input("Please enter a value--"))
             yState[value]=1
+        
+        if (checkWin(xState, yState)!=-1):
+            break
+        
         turn=1-turn #To change the value of between 1 and 0
             
